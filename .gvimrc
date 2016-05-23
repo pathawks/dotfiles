@@ -1,10 +1,51 @@
 set directory^=$HOME/.vim/tmp//
-set encoding=utf-8
-set guifont=Source\ Code\ Pro:h30
 
-colorscheme base16-tomorrow
-set transparency=1
+" Defaults from NeoVim
+filetype plugin indent on
+set autoindent
+set autoread
+set backspace="indent,eol,start"
+set complete=".,w,b,u,t"
+set display="lastline"
+set encoding=utf-8
+set formatoptions="tcqj"
+set history=10000
+set hlsearch
+set incsearch
+set langnoremap
+set laststatus=2
+set listchars="tab:> ,trail:-,nbsp:+"
+set mouse="a"
+set nocompatible
+set nrformats="bin,hex"
+set sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
+set smarttab
+set tabpagemax=50
+set tags="./tags;,tags"
+set ttyfast
+set viminfo="!"
+set wildmenu
+set mousehide
+
+if has('mouse')
+  set mouse=a
+endif
+
+let macvim_skip_colorscheme=1 " Silly MacVim :p
+
 set background=dark
+colorscheme base16-tomorrow
+
+" jk is escape
+inoremap jk <esc>
+
+if has('gui_running')
+  set transparency=1
+  set guifont=Source\ Code\ Pro:h30
+else
+  set lazyredraw          " redraw only when we need to.
+endif
+
 
 " Highlight column 80
 set textwidth=80
@@ -12,9 +53,14 @@ if has('gui_running')
   set columns=100
 endif
 
-highlight ColorColumn ctermbg=235 guibg=#282a2e
-highlight CursorColumn ctermbg=235 guibg=#1d1f21
-let &colorcolumn=join(range(81,200),",")
+if has('nvim')
+  syntax on
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+else
+  highlight ColorColumn ctermbg=235 guibg=#282a2e
+  highlight CursorColumn ctermbg=235 guibg=#1d1f21
+  let &colorcolumn=join(range(81,200),",")
+endif
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -83,7 +129,6 @@ let g:lightline = {
     \ }
 autocmd BufEnter * call lightline#update_once()
 set noshowmode
-set laststatus=2
 function! LightLineModified()
   if &filetype == "help"
     return ""
