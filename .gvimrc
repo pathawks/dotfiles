@@ -1,17 +1,6 @@
 set directory^=$HOME/.vim/tmp//
 
-set background=dark
-colorscheme base16-tomorrow
-
-if has("gui_running")
-  set fu
-  set guioptions-=r " Do not show scrollbar
-  set guiheadroom=0 " Maximize window
-  set guifont=Source\ Code\ Pro:h30
-else
-endif
-
-" From NeoVim
+" Defaults from NeoVim
 syntax enable
 filetype plugin indent on
 set autoindent
@@ -48,6 +37,7 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
+# My crazy tab setup
 nnoremap <C-S-tab> :tabprevious<CR>
 nnoremap <C-tab>   :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
@@ -56,6 +46,19 @@ if !has('gui_running')
   nnoremap <silent> <tab>     :tabnext<CR>
 else
   set guioptions-=e " Do not use GUI tabs
+endif
+
+# Set the theme
+set background=dark
+colorscheme base16-tomorrow
+
+# Set GUI options
+if has("gui_running")
+  set fullscreen
+  set guioptions-=r " Do not show scrollbar
+  set guiheadroom=0 " Maximize window
+  set guifont=Source\ Code\ Pro:h30
+else
 endif
 
 " Highlight column 80
