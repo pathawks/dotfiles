@@ -37,7 +37,7 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
-# My crazy tab setup
+" My crazy tab setup
 nnoremap <C-S-tab> :tabprevious<CR>
 nnoremap <C-tab>   :tabnext<CR>
 nnoremap <C-t>     :tabnew<CR>
@@ -48,11 +48,11 @@ else
   set guioptions-=e " Do not use GUI tabs
 endif
 
-# Set the theme
+" Set the theme
 set background=dark
 colorscheme base16-tomorrow
 
-# Set GUI options
+" Set GUI options
 if has('gui_running')
   set fullscreen
   set guioptions-=r " Do not show scrollbar
@@ -64,7 +64,6 @@ endif
 " Highlight column 80
 set textwidth=80
 highlight ColorColumn ctermbg=235 guibg=#222222
-highlight CursorColumn ctermbg=235 guibg=#111111
 let &colorcolumn=join(range(81,200),",")
 
 fun! <SID>StripTrailingWhitespaces()
