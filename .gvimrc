@@ -27,6 +27,8 @@ set incsearch
 set langnoremap
 set laststatus=2
 set listchars="tab:> ,trail:-,nbsp:+"
+set mouse=a
+set mousehide
 set nocompatible
 set nrformats=bin,hex
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
@@ -102,7 +104,7 @@ let g:lightline = {
     \ 'colorscheme': 'Tomorrow_Night',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ] ]
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
@@ -118,7 +120,6 @@ let g:lightline = {
     \ }
 autocmd BufEnter * call lightline#update_once()
 set noshowmode
-set laststatus=2
 function! LightLineModified()
   if &filetype == "help"
     return ""
