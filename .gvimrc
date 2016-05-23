@@ -1,5 +1,4 @@
 set directory^=$HOME/.vim/tmp//
-set guifont=Source\ Code\ Pro:h30
 
 set background=dark
 colorscheme base16-tomorrow
@@ -8,6 +7,7 @@ if has("gui_running")
   set fu
   set guioptions-=r " Do not show scrollbar
   set guiheadroom=0 " Maximize window
+  set guifont=Source\ Code\ Pro:h30
 else
 endif
 
