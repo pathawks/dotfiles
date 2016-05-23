@@ -1,66 +1,66 @@
 set directory^=$HOME/.vim/tmp//
+set guifont=Source\ Code\ Pro:h30
 
-" Defaults from NeoVim
+set background=dark
+colorscheme base16-tomorrow
+
+if has("gui_running")
+  set fu
+  set guioptions-=r " Do not show scrollbar
+  set guiheadroom=0 " Maximize window
+else
+endif
+
+" From NeoVim
+syntax enable
 filetype plugin indent on
 set autoindent
 set autoread
-set backspace="indent,eol,start"
-set complete=".,w,b,u,t"
-set display="lastline"
+set backspace=indent,eol,start
+set complete=.,w,b,u,t
+set display=lastline
 set encoding=utf-8
-set formatoptions="tcqj"
+set formatoptions=tcqj
 set history=10000
 set hlsearch
 set incsearch
 set langnoremap
 set laststatus=2
 set listchars="tab:> ,trail:-,nbsp:+"
-set mouse="a"
 set nocompatible
-set nrformats="bin,hex"
-set sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
+set nrformats=bin,hex
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
 set smarttab
 set tabpagemax=50
-set tags="./tags;,tags"
+set tags=./tags;,tags
 set ttyfast
-set viminfo="!"
+set viminfo=!,'100,<50,s10,h
 set wildmenu
-set mousehide
 
-if has('mouse')
-  set mouse=a
-endif
-
-let macvim_skip_colorscheme=1 " Silly MacVim :p
-
-set background=dark
-colorscheme base16-tomorrow
-
-" jk is escape
+" http://dougblack.io/words/a-good-vimrc.html
+set lazyredraw
 inoremap jk <esc>
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
 
-if has('gui_running')
-  set transparency=1
-  set guifont=Source\ Code\ Pro:h30
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <esc>:tabnew<CR>
+if !has('gui_running')
+  nnoremap <silent> <tab>     :tabnext<CR>
 else
-  set lazyredraw          " redraw only when we need to.
+  set guioptions-=e " Do not use GUI tabs
 endif
-
 
 " Highlight column 80
 set textwidth=80
-if has('gui_running')
-  set columns=100
-endif
-
-if has('nvim')
-  syntax on
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-else
-  highlight ColorColumn ctermbg=235 guibg=#282a2e
-  highlight CursorColumn ctermbg=235 guibg=#1d1f21
-  let &colorcolumn=join(range(81,200),",")
-endif
+highlight ColorColumn ctermbg=235 guibg=#222222
+highlight CursorColumn ctermbg=235 guibg=#111111
+let &colorcolumn=join(range(81,200),",")
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -78,17 +78,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
-
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <esc>:tabnew<CR>
-if !has('gui_running')
-  nnoremap <silent> <tab>     :tabnext<CR>
-else
-  set guioptions-=e
-endif
-
 
 " Ruler
 set ruler
@@ -110,10 +99,10 @@ filetype on
 
 " LightLine Config
 let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night',
+    \ 'colorscheme': 'jellybeans',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
@@ -129,6 +118,7 @@ let g:lightline = {
     \ }
 autocmd BufEnter * call lightline#update_once()
 set noshowmode
+set laststatus=2
 function! LightLineModified()
   if &filetype == "help"
     return ""
