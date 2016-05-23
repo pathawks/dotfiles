@@ -53,7 +53,7 @@ set background=dark
 colorscheme base16-tomorrow
 
 # Set GUI options
-if has("gui_running")
+if has('gui_running')
   set fullscreen
   set guioptions-=r " Do not show scrollbar
   set guiheadroom=0 " Maximize window
