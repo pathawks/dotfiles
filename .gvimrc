@@ -9,17 +9,23 @@ set backspace=indent,eol,start
 set complete=.,w,b,u,t
 set display=lastline
 set encoding=utf-8
-set formatoptions=tcqj
+if exists('formatoptions')
+  set formatoptions=tcqj
+endif
 set history=10000
 set hlsearch
 set incsearch
-set langnoremap
+if exists('langnoremap')
+  set langnoremap
+endif
 set laststatus=2
 set listchars="tab:> ,trail:-,nbsp:+"
 set mouse=a
 set mousehide
 set nocompatible
-set nrformats=bin,hex
+if exists('nrformats')
+  set nrformats=bin,hex
+endif
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
 set smarttab
 set tabpagemax=50
@@ -58,7 +64,14 @@ if has('gui_running')
   set guioptions-=r " Do not show scrollbar
   set guiheadroom=0 " Maximize window
   set guifont=Source\ Code\ Pro:h30
-else
+endif
+
+" Terminal Navigation
+if has('nvim')
+  tnoremap <silent> <Esc>   <C-\><C-n>:close<CR>   " Escape exits terminal mode
+  noremap  <silent> <C-d>   <esc>:below :5split term://bash<CR>i
+elseif has('osx') && has('gui_running')
+  noremap  <silent> <C-d>   <esc>:below :5split<CR>:ConqueTerm bash<CR>
 endif
 
 " Highlight column 80
@@ -98,6 +111,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'shirk/vim-gas'
 
 Plugin 'chriskempson/base16-vim'
+
+Plugin 'ngmy/vim-rubocop'
+
+if has('osx') && has('gui_running')
+endif
 call vundle#end()
 filetype on
 
