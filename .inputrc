@@ -1,8 +1,0 @@
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-
-set colored-stats on
-set completion-ignore-case off
-set completion-query-items 30
-set show-all-if-unmodified on
-set visible-stats on
