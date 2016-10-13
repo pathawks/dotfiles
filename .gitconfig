@@ -1,0 +1,5 @@
+[user]
+	name = Pat Hawks
+	email = pat@pathawks.com
+[credential]
+	helper = osxkeychain
