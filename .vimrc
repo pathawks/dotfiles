@@ -1,5 +1,8 @@
 set directory^=$HOME/.vim/tmp//
 
+set path+=**
+set title
+
 " Defaults from NeoVim
 syntax enable
 filetype plugin indent on
@@ -27,16 +30,15 @@ if exists('nrformats')
   set nrformats=bin,hex
 endif
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
-set smarttab
+" set smarttab
 set tabpagemax=50
 set tags=./tags;,tags
-set ttyfast
 set viminfo=!,'100,<50,s10,h
 set wildmenu
 
 " http://dougblack.io/words/a-good-vimrc.html
-set lazyredraw
 inoremap jk <esc>
+nnoremap <space> <C-f>
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
@@ -61,6 +63,7 @@ colorscheme base16-tomorrow
 " Set GUI options
 if has('gui_running')
   set fullscreen
+  let base16colorspace=256
   set guioptions-=r " Do not show scrollbar
   set guiheadroom=0 " Maximize window
   set guifont=Source\ Code\ Pro:h30
@@ -92,8 +95,8 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Tabs
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
-set expandtab
+" set softtabstop=4
+set noexpandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Ruler
@@ -106,16 +109,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-fugitive'
-
-Plugin 'shirk/vim-gas'
-
 Plugin 'chriskempson/base16-vim'
-
-Plugin 'ngmy/vim-rubocop'
-
-if has('osx') && has('gui_running')
-endif
 call vundle#end()
 filetype on
 
