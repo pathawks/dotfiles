@@ -99,9 +99,6 @@ set shiftwidth=4
 set noexpandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Ruler
-set ruler
-
 " Vundle Plugins
 filetype on
 filetype off
